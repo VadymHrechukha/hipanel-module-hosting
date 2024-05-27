@@ -11,6 +11,7 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\modules\client\validators\LoginValidator as ClientLoginValidator;
+use hipanel\modules\hosting\validators\BlacklistValidator;
 use hipanel\modules\hosting\validators\LoginValidator as AccountLoginValidator;
 use hipanel\validators\DomainValidator;
 use Yii;
@@ -89,6 +90,7 @@ class Hdomain extends \hipanel\base\Model
             [['with_www'], 'boolean', 'on' => ['create-alias']],
             [['dns_on', 'with_www', 'proxy_enable'], 'boolean', 'on' => ['create']],
             [['domain', 'alias'], DomainValidator::class],
+            [['domain', 'alias'], BlacklistValidator::class],
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
